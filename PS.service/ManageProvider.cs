@@ -1,4 +1,4 @@
-﻿using PS.Domains;
+﻿using PS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,4 +1,5 @@
-﻿using PS.Domains;
+﻿using Data;
+using PS.Domain;
 using PS.Service;
 using System;
 using System.Collections.Generic;
@@ -47,21 +48,33 @@ namespace PS.GUI
             {
                 Name = "chemical",
                 Price = 20,
-                City ="Tunis"
+                MyAdress =
+                {
+                     city ="Tunis"
+                }
+               
 
             };
             Chemical chemical3 = new Chemical()
             {
                 Name = "chemical3",
                 Price = 50,
-                City = "paris"
+                MyAdress =
+                {
+                     city ="paris"
+                }
+              
 
             };
             Chemical chemical2 = new Chemical()
             {
                 Name = "chemical2",
                 Price = 30,
-                City = "nabeul"
+                MyAdress =
+                {
+                   city = "nabeul"
+
+                }
 
             };
             Product biological = new Biological();
@@ -136,10 +149,14 @@ namespace PS.GUI
             Console.WriteLine("------------------------------------");
             String s = "bonjour";
             Console.WriteLine(StringExtension.upper(s));
+            Console.WriteLine("------------------------------------------------------------------------------------------");
+            PSContext ctx = new PSContext();
+            ctx.Products.Add(p2);
+            ctx.Products.Add(chemical1);
+            ctx.Products.Add(chemical3);
+            ctx.Products.Add(chemical2);
+            ctx.SaveChanges();
         }
-      
-
-
 
     }
 }

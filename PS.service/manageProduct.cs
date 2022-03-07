@@ -1,4 +1,4 @@
-﻿using PS.Domains;
+﻿using PS.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -79,12 +79,12 @@ namespace PS.Service
             return req*/
             
 
-            return lsProduct.OfType<Chemical>().OrderBy(prod => prod.City);
+            return lsProduct.OfType<Chemical>().OrderBy(prod => prod.MyAdress.city);
 
         }
         public IEnumerable< IGrouping<String,Chemical>>GetChemicalGroupByCity()
         {
-           return lsProduct.OfType<Chemical>().GroupBy(prod => prod.City); 
+           return lsProduct.OfType<Chemical>().GroupBy(prod => prod.MyAdress.city); 
         }
     }
 }
