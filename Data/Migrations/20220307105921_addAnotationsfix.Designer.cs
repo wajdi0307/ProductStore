@@ -4,14 +4,16 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(PSContext))]
-    partial class PSContextModelSnapshot : ModelSnapshot
+    [Migration("20220307105921_addAnotationsfix")]
+    partial class addAnotationsfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryFk")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateProd")
@@ -67,7 +69,7 @@ namespace Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryFk");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
 
@@ -141,7 +143,7 @@ namespace Data.Migrations
                 {
                     b.HasOne("PS.Domain.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryFk");
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });

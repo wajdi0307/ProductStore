@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace PS.Domain
@@ -9,11 +11,16 @@ namespace PS.Domain
 
         private string confirmPassword;
         public DateTime DateCreated { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required]
         public string Email { get; set; }
-        public int Id { get; set; }
+        [Key]
+        public int providerCode { get; set; }
         public bool IsApproved { get; set; }
         // public string Password { get; set; }
-       
+       [DataType(DataType.Password)]
+       [Required(ErrorMessage ="password est obligatoire")]
+       [MinLength(10)]
         private string password;
         public string UserName { get; set; }
         public List<Product> Products { get; set; }
@@ -29,6 +36,10 @@ namespace PS.Domain
             }
         }
 
+        [Required]
+        [DataType(DataType.Password)]
+        [NotMapped]
+        [Compare("password", ErrorMessage ="confirm password est différent de password")]
         public string ConfirmPassword
         {
             get { return confirmPassword; }
